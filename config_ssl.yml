@@ -1,0 +1,13 @@
+root: /home/admin/server
+chdir: /home/admin/server
+pid: thin_ssl.pid
+address: meet.shgpi
+timeout: 30
+port: 4567
+user: admin
+group: admin
+rackup: config.ru
+log: thin.log
+max_conns: 1024
+max_persisten_conns: 512
+daemonize: true
