@@ -14,11 +14,13 @@ To setup server need to modify config.yml and config_ssl.yml to change options o
 To start db in this folder:
 
 $ thin start -C config_ssl.yml -R config.ru start --ssl --ssl-verify --ssl-key-file your-key --ssl-cert-file your-certificate
+
 $ thin start -C config.yml
 
 To stop db:
 
 $ thin stop -C config_ssl.yml
+
 $ thin stop -C config.yml 
 
 Also, you can use example of init.d script from init.d folder to manage your server.
