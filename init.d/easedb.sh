@@ -1,7 +1,7 @@
 #! /bin/sh
 #
 # chkconfig: 345 80 20
-# description: run fetchmail service
+# description: run easedb service
 #
 
 if [ ! -x /home/admin/server/main.rb ]; then
