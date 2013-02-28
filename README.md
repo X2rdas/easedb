@@ -10,7 +10,8 @@ All folders and files in ./db folder will be represented as JSON on https://your
 You can use GET requests to get data, PUT requests with HTTP-JSON-body for create data on server, POST requests with HTTP-JSON-body for modify your data and DELETE (you can add in body array of items that must be removed or empty body will remove current folder) for removing your data.
 
 To setup server need to install packages:
-rubygems libruby-devel gcc4.5 gcc4.5-c++ make openssl openssl-devel 
+rubygems libruby-devel gcc4.5 gcc4.5-c++ make openssl openssl-devel
+
 and gems:
 sinatra sinatra-contrib rb-inotify rack-ssl thin
 
