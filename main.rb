@@ -8,6 +8,7 @@ require './hashext.rb'
 require 'fileutils'
 require 'sinatra/config_file'
 require 'rb-inotify'
+require 'sinatra_patch'
 # require 'rack/ssl'
 
 #set settings.root, '/home/admin/server'
@@ -191,25 +192,36 @@ put '/db/*' do
   protected!
   @path = settings.root+url_decode(request.path)
   response['Access-Control-Allow-Origin'] = '*'
-  halt 409, {"ok" => false, "error" => "Item already exist"}.to_json unless !File.exist?(@path)
-  begin
-    data = request.body.read
-    if data.length == 0
-      Dir.mkdir(@path)
-      return {"ok" => true}.to_json
+  if params['symlink']
+    if !File.exist(@path)
+      if File.exist(settings.root+params['symlink'])
+        File.symlink(settings.root+params['symlink'],@path)
+      else
+        halt 404, {"ok" => false, "error" => "No such file or directory"}.to_json
+      end
+    else
+      halt 409, {"ok" => false, "error" => "Item already exist"}.to_json
     end
-    json = JSON.parse(data)
+  else
+    halt 409, {"ok" => false, "error" => "Item already exist"}.to_json unless !File.exist?(@path)
+    begin
+      data = request.body.read
+      if data.length == 0
+        Dir.mkdir(@path)
+        return {"ok" => true}.to_json
+      end
+      json = JSON.parse(data)
 
-    Dir.mkdir(@path)
-    # json.set_owner!(auth_credentials[0])
-    json.to_dir(@path)
-    return {"ok" => true}.to_json
-  rescue JSON::ParserError
-    halt 400, {"ok" => false, "error" => "Not valid JSON"}.to_json
-  rescue Errno::ENOENT
-    halt 404, {"ok" => false, "error" => "No such file or directory"}.to_json
+      Dir.mkdir(@path)
+      # json.set_owner!(auth_credentials[0])
+      json.to_dir(@path)
+      return {"ok" => true}.to_json
+    rescue JSON::ParserError
+      halt 400, {"ok" => false, "error" => "Not valid JSON"}.to_json
+    rescue Errno::ENOENT
+      halt 404, {"ok" => false, "error" => "No such file or directory"}.to_json
+    end
   end
-
 end
 
 # main POST method
