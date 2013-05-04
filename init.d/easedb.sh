@@ -4,10 +4,6 @@
 # description: run easedb service
 #
 
-if [ ! -x /home/admin/server/main.rb ]; then
-    exit 1
-fi
-
 if [ -x /etc/rc.d/init.d/functions ]; then
    . /etc/rc.d/init.d/functions
 fi
@@ -17,7 +13,7 @@ RETVAL=0
 start () {
     echo "Starting base"
     cd ~admin/server
-    thin start -C config_ssl.yml -R config.ru start --ssl --ssl-verify --ssl-key-file cert/server.key --ssl-cert-file cert/server.crt
+    thin start -C config_ssl.yml -R config.ru --ssl --ssl-verify --ssl-key-file cert/server.key --ssl-cert-file cert/server.crt
     thin start -C config.yml
     RETVAL=$?
     [ $RETVAL -eq 0 ]

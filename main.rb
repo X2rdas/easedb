@@ -193,9 +193,10 @@ put '/db/*' do
   @path = settings.root+url_decode(request.path)
   response['Access-Control-Allow-Origin'] = '*'
   if params['symlink']
-    if !File.exist(@path)
-      if File.exist(settings.root+params['symlink'])
+    if !File.exist?(@path)
+      if File.exist?(settings.root+params['symlink'])
         File.symlink(settings.root+params['symlink'],@path)
+        return {"ok" => true}.to_json
       else
         halt 404, {"ok" => false, "error" => "No such file or directory"}.to_json
       end

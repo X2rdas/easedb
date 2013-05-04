@@ -9,8 +9,8 @@ Usage:
 All folders and files in ./db folder will be represented as JSON on https://your.address:4567/db/ and http://your.address:4568/db/. Each folder in this case will be a hash, each file without extention will be a "filename" => "filecontents", each file with extention will be a "filename" => "attachment", which can be accessed directly in example as http://your.address:4568/db/folder/folder/folder/filename.jpg
 You can use GET requests to get data, PUT requests with HTTP-JSON-body for create data on server, POST requests with HTTP-JSON-body for modify your data and DELETE (you can add in body array of items that must be removed or empty body will remove current folder) for removing your data.
 
-To setup server need to install packages:
-rubygems libruby-devel gcc4.5 gcc4.5-c++ make openssl openssl-devel
+To setup server under Alt Linux need to install packages:
+rubygems libruby-devel gcc4.5 gcc4.5-c++ make openssl openssl-devel ruby-json 
 
 and gems:
 sinatra sinatra-contrib rb-inotify rack-ssl thin
