@@ -1,8 +1,0 @@
-begin
-  require 'sendfile'
-rescue LoadError
-end
-
-Rainbows! do
-  use :ThreadSpawn
-end
