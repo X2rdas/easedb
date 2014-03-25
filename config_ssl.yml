@@ -1,7 +1,7 @@
-root: /home/admin/server
-chdir: /home/admin/server
+root: C:\Users\Xardas\Dropbox\studies\diplom\system
+chdir: C:\Users\Xardas\Dropbox\studies\diplom\system
 pid: thin_ssl.pid
-address: meet.shgpi
+address: 0.0.0.0
 timeout: 30
 port: 4567
 user: admin

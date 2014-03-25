@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/underscore.js"></script>
+<script type="text/javascript" src="js/backbone.js"></script>
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
+<script type="text/javascript" src="js/main.js"></script>
+
+<script type="text/template" id="navigation">
+  <% if (url != 'db/') { %> 
+    <li><a href="<%= '#'+back(url) %>" class="navelem back">..</a></li>
+  <% } %>
+</script>
+
+<script type="text/template" id="navnode">
+  <li><a href="<%= '#'+url+'/' %>" class="navelem"><%= name %><button type="button" class="close">×</button></a></li>
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <form class="form-search" >
+        <div class="input-append">
+          <input type="text" class="span2 search-query">
+          <button type="submit" id="search" class="btn">Поиск</button>
+        </div>
+      </form>
+
+      <h4 style="text-align: center" id="newuserslabel">Новые пользователи отсутствуют</h4>
+      <ul class="nav nav-tabs nav-stacked" id="newusers">
+
+      </ul>
+    </div>
+    <div class="span9" id="mainframe">
+      <ul class="breadcrumb" id="breadcrumb">
+        <li id="active"><span class="divider">/</span></li>
+      </ul>
+      <ul class="nav nav-tabs nav-stacked" id="mainnav">
+      </ul>
+      <div id="modify">
+      </div>
+      <br>
+      <br>
+      <br>
+      
+      <div id="create">
+      </div>
+    </div>
+  </div>
+</div>

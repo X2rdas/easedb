@@ -1,13 +1,13 @@
-root: /home/admin/server
-chdir: /home/admin/server
+root: "/media/ssd/Users/Xardas/Dropbox/ruby projects/easedb"
+chdir: "/media/ssd/Users/Xardas/Dropbox/ruby projects/easedb"
 pid: thin.pid
-address: meet.shgpi
+address: 0.0.0.0
 timeout: 30
 port: 4568
-user: admin
-group: admin
+user: xardas
+group: xardas
 rackup: config.ru
 log: thin.log
 max_conns: 1024
 max_persisten_conns: 512
-daemonize: true
+daemonize: false

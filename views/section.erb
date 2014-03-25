@@ -1,0 +1,6 @@
+<ul>
+ <% Dir["/home/admin/server/conferences/#{@conference}/#{@section}/*"].each do |file| %>
+ <li><a href=<%= "/conferences/#{@conference}/#{@section}/#{File.basename(file)}" %>> <%= File.basename(file)%> </a></li>
+ <% end %>
+</ul>
+<a href=<%="/conferences/#{@conference}" %>>Назад</a>

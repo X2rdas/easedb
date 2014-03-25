@@ -1,6 +1,7 @@
 require 'fileutils'
 
   class Hash
+ # class GoogleHashSparseRubyToRuby
     def to_dir(path)
       self.each_pair do |key,value|
         if value.kind_of? Hash
@@ -26,6 +27,7 @@ require 'fileutils'
     def full_select(&block)
       return self unless block_given?
       selected = Hash.new
+      #selected = GoogleHashSparseRubyToRuby.new
       each_pair do |key,value|
         if value.kind_of? Hash
           selected[key] = value.full_select &block
@@ -54,6 +56,7 @@ require 'fileutils'
       puts &block
       if block.call(self)
         selected = Hash.new
+        #selected = GoogleHashSparseRubyToRuby.new
         self.each_pair do |key,value|
           unless value.kind_of? Hash
             selected[key] = value

@@ -1,0 +1,105 @@
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+
+<script type="text/javascript" src="/js/jquery.contextMenu.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.position.js"></script>
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  function change_password_type(obj) {
+    // alert($(obj).parent().prev().children().first().val());
+    // alert($(obj).parent().prev().children().first().prop('type'));
+    // $(obj).parent().prev().append('<input type="text" value="'+$(obj).parent().prev().children().first().val()+'"/>');
+    if ($(obj).parent().prev().children().first().prop('type') == 'password') {
+      // alert("hyi");
+      $(obj).parent().prev().append('<input type="text" name="'+$(obj).parent().prev().children().first().prop('name')+'" value="'+$(obj).parent().prev().children().first().val()+'"/>');
+      $(obj).parent().prev().children().first().remove();
+
+    }
+    else {
+      $(obj).parent().prev().append('<input type="password" name="'+$(obj).parent().prev().children().first().prop('name')+'" value="'+$(obj).parent().prev().children().first().val()+'"/>');
+      $(obj).parent().prev().children().first().remove();
+    }
+  }
+
+  function delete_user(obj) {
+    if (confirm("Вы уверены, что хотите удалить данного пользователя?")) {
+      // alert("Привет!");
+      $(obj).parent().parent().remove();
+      // $(obj).submit();
+      document.forms[0].submit();
+      // result = true;
+    } 
+    else {
+      return false;
+      
+    }
+    // alert(result);
+    // return result;
+  }
+</script>
+
+<div class="container">
+  <form method=POST>
+  <table>
+  <thead>
+    <tr>
+    <td>
+    Логин
+    </td>
+    <td>
+    Пароль
+    </td>
+    <td>
+    Показать пароль
+    </td>
+    </tr>
+  </thead>
+  <% userlist.each_with_index do |user,index| %>
+  
+  <tr><td><input name="userlist[<%=index %>][login]" type=text value="<%= user[0] %>"/></td><td><input name="userlist[<%=index %>][password]" type=password value="<%= user[1] %>"/></td><td style="text-align: center"><input type=checkbox onclick="change_password_type(this)"></td><td><input type=submit class="btn" value="Удалить" onclick="return delete_user(this)" onsubmit="alert('hyi')"/></td></tr>
+  <% end %>
+
+  </table>
+  <input type=submit class="btn" />
+  </form>
+  <a href="#myModal" role="button" class="btn" data-toggle="modal">Создать нового пользователя</a>
+   
+  <!-- Modal -->
+  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Регистрация нового пользователя</h3>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" for="login">Логин</label>
+          <div class="controls">
+            <input type="text" id="login">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="pass1">Пароль</label>
+          <div class="controls">
+            <input type="password" id="pass1">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="pass2">Повтор пароля</label>
+          <div class="controls">
+            <input type="password" id="pass2">
+          </div>
+        </div>
+      </form>
+      
+    
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Отмена</button>
+      <button class="btn btn-primary" onclick="create_new_user()">Создать</button>
+    </div>
+  </div>
+</div>

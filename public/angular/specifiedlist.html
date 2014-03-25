@@ -1,0 +1,12 @@
+<div class="container">
+  <!--<h3 style="text-align: center;">Педагогический форум<br>
+«Потенциал взаимодействия образовательных учреждений в условиях модернизации
+Российского образования»</h1>-->
+<!-- {{myData}} -->
+  <table class="table">
+    <!-- <tr><td>№</td><td ng-repeat="(key,item) in myData">key</td></tr> -->
+    <tr ng-repeat="(key,item) in myData">
+      <td>{{key+1}}</td><td ng-repeat="(key2,item2) in item">{{item2}}</td>
+    </tr>
+  </table>
+</div>
