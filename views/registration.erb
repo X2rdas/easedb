@@ -1,0 +1,81 @@
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+
+<script type="text/javascript" src="/js/jquery.contextMenu.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.position.js"></script>
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/registration.js"></script>
+<form method=POST class="form-horizontal " >
+  <h1 style="text-align: center">ФОРМА РЕГИСТРАЦИИ</h1>
+  <h4 style="text-align: center"><? echo $json_section_response['response']['name'];  ?></h3>
+    <div class="control-group<?php echo (isset($_POST['reg']) && !preg_match("/./u", $_POST['lastname'])) ? ' error' : '' ?>">
+      <label class="control-label" for="lastname">Фамилия*</label>
+      <div class="controls">
+        <input type=text name="lastname" class='span6' placeholder="Фамилия" <?php echo (isset($_POST['reg'])) ? "value = '{$_POST['lastname']}'" : "" ?>>
+      </div>
+    </div>
+    <div class="control-group<?php echo (isset($_POST['reg']) && !preg_match("/./u", $_POST['firstname'])) ? ' error' : '' ?>">
+      <label class="control-label" for="firstname">Имя*</label>
+      <div class="controls">
+        <input type=text name="firstname" class='span6' placeholder="Имя" <?php echo (isset($_POST['reg'])) ? "value = '{$_POST['firstname']}'" : "" ?>>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="patname">Отчество</label>
+      <div class="controls">
+        <input type=text name="patname" class='span6' placeholder="Отчество" <?php echo (isset($_POST['reg'])) ? "value = '{$_POST['patname']}'" : "" ?>>
+      </div>
+    </div>
+    <div class="control-group<?php echo (isset($_POST['reg']) && !preg_match("/./u", $_POST['facility'])) ? ' error' : '' ?>">
+      <label class="control-label" for="facility">Место работы*</label>
+      <div class="controls">
+        <input type=text name="facility" class='span6' placeholder="Место работы"  <?php echo (isset($_POST['reg'])) ? "value = '{$_POST['facility']}'" : "" ?>>
+      </div>
+    </div>
+    <div class="control-group<?php echo (isset($_POST['reg']) && !preg_match("/^[А-Яа-яЁё\s\-\.]+$/u", $_POST['post'])) ? ' error' : '' ?>">
+      <label class="control-label" for="post">Должность*</label>
+      <div class="controls">
+        <input type=text name="post" class='span6' placeholder="Должность"  <?php echo (isset($_POST['reg'])) ? "value = '{$_POST['post']}'" : "" ?>>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="email">E-mail (необязательно)</label>
+      <div class="controls">
+        <input type="email" name="email" class='span6' placeholder="E-mail" <?php echo (isset($_POST['reg'])) ? "value = '{$_POST['email']}'" : "" ?>>
+      </div>
+    </div>
+    <div class="control-group <?php echo (isset($_POST['reg']) && $_POST['section'] == '') ? ' error' : '' ?>">
+      <label class="control-label" for="section">Секция*</label>
+      <div class="controls">
+        <select class="span7" name="section">
+          <option></option>
+          <?php
+          asort($visual_array);
+          foreach ($visual_array as $key => $value) {
+            if (isset($_GET['section']) && $_GET['section'] == $key) echo "<option selected value='$key'>$value</option>";
+            else echo "<option value='$key'>$value</option>";
+          }
+          ?>
+        </select>
+      </div>
+    </div>
+    <div class="control-group <?php echo (isset($_POST['reg']) && $_POST['degree'] == '') ? ' error' : '' ?>">
+      <label class="control-label" for="degree">Степень участия*</label>
+      <div class="controls">
+        <select class="span7" name="degree">
+          <option value="участник">участник</option>
+          <option value="выступающий">выступающий</option>
+          <option value="организатор">организатор</option>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <button type="submit" name="reg" class="btn">Зарегистрироваться</button>
+      </div>
+    </div>
+    <p style='text-align: center'>Поля, отмеченные знаком *, являются обязательными</p>
+  </form>

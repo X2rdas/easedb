@@ -1,0 +1,37 @@
+<div class="container">
+<!--   <div ng-show="notFound">
+    <legend>Извините, print.php не найден</legend>
+    <a href="#{{back_url}}">Вернуться назад</a>
+  </div>
+
+  <div ng-hide="notFound">
+
+  </div> -->
+  <div class="col-xs-5">
+    <input type="checkbox" ng-model="ismatched" class="form-control">
+    <input type="search" ng-model="searchtext" class="form-control" placeholder="Фильтр">
+    <select id="select1" size="20" multiple class="form-control" ng-model="selected">
+      <option ng-repeat="user in data | contains:searchtext:ismatched">
+        {{user[getKeys(user)[0]].name}} ({{user[getKeys(user)[0]].facility}})
+      </option>
+    </select>
+  </div>
+  <div class="col-xs-2">
+    <input type="button" ng-click="deselectSelect('select1'); select()" class="form-control" value=">>">
+    <input type="button" ng-click="deselectSelect('select2'); deselect()" class="form-control" value="<<">
+    <form target="_blank" action="{{urls.apache+location+'/'}}print.php?url={{back(urls.system_https_internal+location)}}" method="POST">
+      <input type="hidden" name="users[]" ng-repeat="user in selectedKeys" value="{{user}}">
+      <input type="submit" name="submit" value="Печатать" class="form-control">
+    </form>
+  </div>
+  <div class="col-xs-5">
+    <input type="checkbox" ng-model="ismatched2" class="form-control">
+    <input  type="search" ng-model="searchtext2" class="form-control" placeholder="Фильтр">
+    <select id="select2" size="20" multiple class="form-control" ng-model="selectedSelected">
+      <option ng-repeat="user in selectedValues | contains:searchtext2:ismatched2">
+        {{user[getKeys(user)[0]].name}} ({{user[getKeys(user)[0]].facility}})
+      </option>
+    </select>
+  </div>
+  <!-- {{selectedValues}} -->
+</div>

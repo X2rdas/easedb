@@ -1,3 +1,4 @@
-root: /home/admin/server
-userlist:
-  admin: password
+root: "/media/ssd/Users/Xardas/Dropbox/ruby projects/easedb"
+root_db: "/var/db"
+default_right: "S"
+

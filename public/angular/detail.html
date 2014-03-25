@@ -1,0 +1,27 @@
+<form name="myForm">
+  <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+    <label>Название</label>
+    <input type="text" name="name" ng-model="project.name" required>
+    <span ng-show="myForm.name.$error.required" class="help-inline">
+        не заполнено</span>
+  </div>
+ 
+  <div class="control-group" ng-class="{error: myForm.site.$invalid}">
+    <label>Сайт</label>
+    <input type="url" name="site" ng-model="project.site" required>
+    <span ng-show="myForm.site.$error.required" class="help-inline">
+        не заполнено</span>
+    <span ng-show="myForm.site.$error.url" class="help-inline">
+        не URL</span>
+  </div>
+ 
+  <label>Описание</label>
+  <textarea name="description" ng-model="project.description"></textarea>
+ 
+  <br>
+  <a href="#/" class="btn">Отмена</a>
+  <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid"
+          class="btn btn-primary">Сохранить</button>
+  <button ng-click="destroy()"
+          ng-show="project._id" class="btn btn-danger">Удалить</button>
+</form>
